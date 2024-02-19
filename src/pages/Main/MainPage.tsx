@@ -31,7 +31,7 @@ const MainPage = () => {
   useEffect(() => {
     console.log(jwt)
 
-    axios.get(`https://cors-anywhere.herokuapp.com/${API_ROUTES.URL}${API_ROUTES.GET_USER}`, {
+    axios.get(`${API_ROUTES.URL}${API_ROUTES.GET_USER}`, {
       withCredentials: false,
       headers: {
         Authorization: `Bearer ${jwt}`,

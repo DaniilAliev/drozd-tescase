@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/get-user': 'http://93.183.72.61:3003'
+      '/get-user': "http://93.183.72.61:3003",
     }
   }
 })
