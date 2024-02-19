@@ -1,0 +1,54 @@
+.container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0px 20px;
+}
+
+h1 {
+  border-bottom: 2px solid rgb(235, 61, 61);
+  margin-bottom: 20px;
+}
+
+h2 {
+  text-align: left;
+}
+
+label {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+input[type='radio'] {
+  width: auto;
+  display: inline-block;
+  margin-right: 10px;
+  position: relative;
+  top: 10px;
+}
+
+.quiz {
+  margin-bottom: 20px;
+}
+
+.button {
+  margin-bottom: 20px;
+}
+
+.button:hover {
+  background-color: rgb(235, 61, 61);
+  color: white;
+}
+
+.button:disabled {
+  pointer-events: none;
+}
+
+.completed {
+  display: flex;
+  gap: 20px;
+}
+
+.completed > p {
+  flex-shrink: 0;
+}
+
