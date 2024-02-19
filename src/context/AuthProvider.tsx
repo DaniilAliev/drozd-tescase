@@ -1,33 +1,30 @@
 import { FC, ReactElement, useMemo, useState } from "react";
 import { AuthContext } from ".";
+import Cookies from 'js-cookie';
+import { Data } from "../types";
 
 const AuthProvuder: FC<{ children:  ReactElement }> = ({ children }) => {
-  const currentUser = JSON.parse(localStorage.getItem('login'));
-  const token = JSON.parse(localStorage.getItem('jwt'))
-
+  
+  const storedValue = localStorage.getItem('login');
+  const currentUser = storedValue ? JSON.parse(storedValue) : null;
   const [user, setUser] = useState(currentUser || null);
-  const [jwt, setJwt] = useState(token || null);
 
-  const logIn = (data) => {
+  const logIn = (data: Data) => {
     const { login, jwt } = data;
 
     localStorage.setItem('login', JSON.stringify(login));
-    localStorage.setItem('jwt', JSON.stringify(jwt));
     setUser(login);
-    setJwt(jwt);
-    console.log(login, jwt)
+    Cookies.set('user_jwt', jwt, {expires: 7, secure: true});
   };
 
   const logOut = () => {
-    localStorage.removeItem('id');
     localStorage.removeItem('login');
-    localStorage.removeItem('jwt');
     setUser(null);
   };
 
   const props = useMemo(() => ({
-    user, logIn, logOut, setUser, jwt,
-  }), [user, jwt]);
+    user, logIn, logOut, setUser,
+  }), [user]);
 
   return (
     <AuthContext.Provider value={props}>

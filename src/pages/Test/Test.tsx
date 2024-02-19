@@ -2,21 +2,20 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useAuthContext, useGeneralContext } from "../../context";
+import { useGeneralContext } from "../../context";
 import { Link } from "react-router-dom";
 import ProtectedRoute from "../../routes/ProtectedRoute";
 import API_ROUTES from "../../routes/apiRoutes";
 import submit from "../../utils/testSubmit";
 import styles from './Test.module.css';
+import { Quiz } from "../../types";
 
 const Test = () => {
-  const [quiz, setQuiz] = useState()
+  const [quiz, setQuiz] = useState<Quiz | null>()
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isAnswerSent, setIsAnswerSent] = useState<boolean>(false);
 
   const { id } = useParams();
-
-  const { jwt } = useAuthContext() as { jwt: string};
 
   const { setPersents } = useGeneralContext() as { setPersents: (id: number, persent: number) => void };
 
@@ -39,9 +38,9 @@ const Test = () => {
       <div className={styles.container}>
         {isLoading ? <p>Loading...</p> :
           <>
-            <h1>{quiz.name}</h1>
-            <form onSubmit={handleSubmit((data) => submit(data, questionsNum, id, setPersents, setIsAnswerSent, jwt))}>
-              {quiz.questions.map((item) => (
+            <h1>{quiz?.name}</h1>
+            <form onSubmit={handleSubmit((data) => questionsNum && submit(data, questionsNum, id, setPersents, setIsAnswerSent))}>
+              {quiz?.questions.map((item) => (
                 <div className={styles.quiz} key={item.question}>
                   <h2>{item.question}</h2>
                   {item.answers.map((answer) => (

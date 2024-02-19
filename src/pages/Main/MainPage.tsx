@@ -6,13 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ProtectedRoute from "../../routes/ProtectedRoute";
 import styles from './MainPage.module.css';
-import { Test } from "../../types";
-
-type AuthContext = {
-  user: string,
-  logOut: () => void,
-  jwt: string,
-}
+import { AuthContext, Test } from "../../types";
+import Cookies from 'js-cookie';
 
 const MainPage = () => {
   const [tests, setTests] = useState<Test[] | null>([]);
@@ -29,15 +24,19 @@ const MainPage = () => {
   }, []);
 
   useEffect(() => {
-    console.log(jwt)
+    const token = Cookies.get('user_jwt');
+
+    console.log(token)
 
     axios.get(`${API_ROUTES.URL}${API_ROUTES.GET_USER}`, {
-      withCredentials: false,
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
+      // // withCredentials: true,
+      // headers: {
+      //   Authorization: `Bearer ${token}`,
+      //   'Content-Type': 'application/json',
+      // },
     }).then((res) => console.log(res));
-  }, [jwt])
+
+  }, [jwt]);
 
   const navigate = useNavigate();
 

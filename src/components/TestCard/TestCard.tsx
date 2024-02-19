@@ -6,7 +6,7 @@ import { useGeneralContext } from '../../context';
 
 const TestCard: FC<Test> = ({ id, name }) => {
 
-  const { answers } = useGeneralContext();
+  const { answers } = useGeneralContext() as { answers: string[] };
 
   console.log(answers)
 
