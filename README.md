@@ -6,7 +6,7 @@ npm install - to install all dependencies.
 
 npm run dev - to start this project locally on http://localhost:5173/
 
-###Features: 
+### Features: 
 - Registration and login is available;
 - Protected routes for unlogged users;
 - Cookies for jwt;
