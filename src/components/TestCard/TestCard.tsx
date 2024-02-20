@@ -5,10 +5,7 @@ import { Link } from 'react-router-dom';
 import { useGeneralContext } from '../../context';
 
 const TestCard: FC<Test> = ({ id, name }) => {
-
   const { answers } = useGeneralContext() as { answers: string[] };
-
-  console.log(answers)
 
   return (
     <div className={styles.card}>

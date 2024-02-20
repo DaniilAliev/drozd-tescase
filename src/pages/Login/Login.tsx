@@ -16,10 +16,6 @@ const Login = () => {
   const { logIn, user } = useAuthContext() as {logIn: () => void, user: string};
 
   useEffect(() => {
-    setError('')
-  }, [page])
-
-  useEffect(() => {
     if (user) {
       navigate(API_ROUTES.MAIN);
     }
@@ -28,9 +24,15 @@ const Login = () => {
   const {
     register,
     handleSubmit,
+    reset,
   } = useForm<LoginForm>({
     defaultValues: {},
   });
+
+  useEffect(() => {
+    setError('');
+    reset();
+  }, [page])
 
   const handlePage = () => {
     page === 'login' ? setPage('signup') : setPage('login');
@@ -52,7 +54,7 @@ const Login = () => {
 
           <div>
             <label htmlFor="password">Пароль</label>
-            <input type="text" id='password' {...register('password')} />
+            <input type="password" id='password' {...register('password')} />
           </div>
 
           {error && <p className={styles.error}>{error}</p>}

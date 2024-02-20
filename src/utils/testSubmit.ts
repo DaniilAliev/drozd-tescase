@@ -13,14 +13,12 @@ const submit = async (
 
   // const token = Cookies.get('user_jwt');
 
-  const answers = Object.values(data) as string[];
+  const answers = Object.values(data) as Array<string>;
+
   const dataToSubmit = { answers };
-  console.log(dataToSubmit);
 
   const persents = countRigthtAnswers(questionsNum, answers);
   setPersents && setPersents(Number(id), persents);
-
-  console.log(persents);
 
   // const config = {
   //   headers: {
@@ -30,11 +28,10 @@ const submit = async (
   // }
 
   try {
-    const res = await axios.post(`${API_ROUTES.URL}${API_ROUTES.QUIZ}/${id}${API_ROUTES.ANSWER}`,
+      await axios.post(`${API_ROUTES.URL}${API_ROUTES.QUIZ}/${id}${API_ROUTES.ANSWER}`,
       dataToSubmit,
       // config
     );
-    console.log(res);
     setIsAnswerSent && setIsAnswerSent(true);
   } catch (error) {
     console.log(error)

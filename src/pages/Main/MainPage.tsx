@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import ProtectedRoute from "../../routes/ProtectedRoute";
 import styles from './MainPage.module.css';
 import { AuthContext, Test } from "../../types";
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
 const MainPage = () => {
   const [tests, setTests] = useState<Test[] | null>([]);
@@ -24,9 +24,7 @@ const MainPage = () => {
   }, []);
 
   useEffect(() => {
-    const token = Cookies.get('user_jwt');
-
-    console.log(token)
+    // const token = Cookies.get('user_jwt');
 
     axios.get(`${API_ROUTES.URL}${API_ROUTES.GET_USER}`, {
       // // withCredentials: true,

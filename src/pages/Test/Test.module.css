@@ -4,6 +4,10 @@
   margin: 0px 20px;
 }
 
+.container > p {
+  text-align: center;
+}
+
 h1 {
   border-bottom: 2px solid rgb(235, 61, 61);
   margin-bottom: 20px;

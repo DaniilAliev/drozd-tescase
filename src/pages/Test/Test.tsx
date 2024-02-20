@@ -26,7 +26,6 @@ const Test = () => {
   useEffect(() => {
     axios.get(`${API_ROUTES.URL}${API_ROUTES.QUIZ}/${id}`)
       .then((res) => {
-        console.log(res);
         setQuiz(res.data);
         setIsLoading(false);
       })

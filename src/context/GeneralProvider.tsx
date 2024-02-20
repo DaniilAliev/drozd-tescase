@@ -8,8 +8,6 @@ const GeneralProvider: FC<{children: ReactElement}> = ({children}) => {
     setAnswers(prev => ({...prev, [id]: persent}))
   }
 
-  console.log(answers)
-
   const props = useMemo(() => ({
     answers, setPersents
   }), [answers]);

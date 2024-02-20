@@ -1,4 +1,4 @@
-const countRigthtAnswers = (allNum: number, answers: string[]) => {
+const countRigthtAnswers = (allNum: number, answers: Array<string>) => {
   const rightAnswers = answers.filter((item) => item.includes('Correct') || item === 'Yes').length;
   const res = rightAnswers / allNum
 
